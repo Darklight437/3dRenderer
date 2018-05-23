@@ -10,6 +10,12 @@ int main()
 	//code!
 
 	GLFWwindow* window = glfwCreateWindow(1280, 720, "hella sick graphics", nullptr, nullptr);
+	if (true)
+	{
+
+	}
+
+
 
 	if (window == nullptr)
 	{
@@ -17,13 +23,12 @@ int main()
 		return -2;
 	}
 
-
 	glfwMakeContextCurrent(window);
 
 
 
 
-
+	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
 }
