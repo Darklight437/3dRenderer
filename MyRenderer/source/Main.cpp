@@ -1,3 +1,7 @@
+
+
+#include<glad\glad.h>
+#define GLFW_INCLUDE_NONE
 #include<glfw\glfw3.h>
 
 
@@ -14,9 +18,7 @@ int main()
 	{
 
 	}
-
-
-
+	
 	if (window == nullptr)
 	{
 		glfwTerminate();
@@ -24,6 +26,37 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
+
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		glfwDestroyWindow(window);
+		glfwTerminate();
+		return -3;
+	}
+
+	
+	//render loop
+	while (glfwWindowShouldClose(window) == false &&
+		glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
+		// our game logic and update code goes here!
+		// so does our render code!
+
+
+
+
+
+
+
+
+
+
+
+		
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+
 
 
 
