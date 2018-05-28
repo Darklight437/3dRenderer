@@ -1,8 +1,13 @@
 #pragma once
-class window
+class Window
 {
 public:
-	window();
-	~window();
+	Window();
+	~Window();
+
+
+	bool createWindow();
+	bool destroyWindow();
+
 };
 
