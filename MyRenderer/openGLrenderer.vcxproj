@@ -154,12 +154,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="source\application.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\MyWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="source\application.h" />
     <ClInclude Include="source\MyWindow.h" />
   </ItemGroup>
