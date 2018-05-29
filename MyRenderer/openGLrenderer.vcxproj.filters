@@ -27,7 +27,10 @@
     <ClCompile Include="source\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera.cpp">
+    <ClCompile Include="source\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +41,10 @@
     <ClInclude Include="source\application.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\camera.h">
+    <ClInclude Include="source\Camera.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
