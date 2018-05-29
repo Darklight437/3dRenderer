@@ -35,13 +35,13 @@ void Clock::resetClock()
 
 void Clock::update()
 {
-	deltaTime = std::chrono::duration_cast<std::chrono::duration<float, std::milli>>(m_timer.now() - m_lastTime).count() / 1000.0f;
+	m_deltaTime = std::chrono::duration_cast<std::chrono::duration<float, std::milli>>(m_timer.now() - m_lastTime).count() / 1000.0f;
 	m_lastTime = m_timer.now();
 }
 
-float Clock::getDeltaTime()
+float Clock::deltaTime()
 {
-	return deltaTime;
+	return m_deltaTime;
 }
 
 Clock& Clock::getInstance()

@@ -13,7 +13,7 @@ public:
 
 	void update();
 
-	float getDeltaTime();
+	float deltaTime();
 	static Clock& getInstance();
 
 private:
@@ -34,8 +34,6 @@ private:
 
 
 
-	float deltaTime = 0.0f;
+	float m_deltaTime = 0.0f;
 
 };
-};
-
