@@ -27,7 +27,7 @@
     <ClCompile Include="source\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
+    <ClCompile Include="source\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +38,7 @@
     <ClInclude Include="source\application.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="camera.h">
+    <ClInclude Include="source\camera.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

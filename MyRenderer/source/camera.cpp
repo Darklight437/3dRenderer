@@ -1,12 +1,12 @@
-#include "camera.h"
+#include "Camera.h"
 
 
 
-camera::camera()
+Camera::Camera()
 {
 }
 
 
-camera::~camera()
+Camera::~Camera()
 {
 }
