@@ -154,17 +154,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="source\application.cpp" />
     <ClCompile Include="source\Camera.cpp" />
+    <ClCompile Include="source\Clock.cpp" />
+    <ClCompile Include="source\FlyCamera.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\MyWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Clock.h" />
     <ClInclude Include="source\application.h" />
     <ClInclude Include="source\Camera.h" />
+    <ClInclude Include="source\Clock.h" />
+    <ClInclude Include="source\FlyCamera.h" />
     <ClInclude Include="source\MyWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
