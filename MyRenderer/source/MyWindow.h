@@ -3,6 +3,7 @@
 #include<glfw\glfw3.h>
 #include "string"
 
+
 class MyWindow
 {
 public:
