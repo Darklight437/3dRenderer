@@ -1,38 +1,22 @@
-
-
 #include<glad\glad.h>
 #define GLFW_INCLUDE_NONE
 #include<glfw\glfw3.h>
+#include "MyWindow.h"
 
 
 int main()
 {
-	if (glfwInit() == false)
-	{
-		return -1;
-	}
-	//code!
-
-	GLFWwindow* window = glfwCreateWindow(1280, 720, "hella sick graphics", nullptr, nullptr);
-	if (true)
-	{
-
-	}
+	MyWindow windowHandler;
 	
-	if (window == nullptr)
-	{
-		glfwTerminate();
-		return -2;
-	}
 
-	glfwMakeContextCurrent(window);
+	//code!
+	
+	//windowHandler.start(1280, 720, "Hella Sick Graphics");
+	GLFWwindow* window = windowHandler.getWindowptr();
 
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		glfwDestroyWindow(window);
-		glfwTerminate();
-		return -3;
-	}
+	
+
+	
 
 	
 	//render loop
@@ -61,7 +45,7 @@ int main()
 
 
 
-	glfwDestroyWindow(window);
+	windowHandler.destroyWindow();
 	glfwTerminate();
 	return 0;
 }

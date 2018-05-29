@@ -21,12 +21,18 @@
     <ClCompile Include="source\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\window.cpp">
+    <ClCompile Include="source\MyWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\window.h">
+    <ClInclude Include="source\MyWindow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\application.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
