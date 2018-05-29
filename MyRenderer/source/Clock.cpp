@@ -51,3 +51,4 @@ Clock& Clock::getInstance()
 	return clock;
 
 }
+
