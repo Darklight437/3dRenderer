@@ -36,10 +36,10 @@
     <ClCompile Include="source\FlyCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\mesh.cpp">
+    <ClCompile Include="source\Gizmos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Gizmos.cpp">
+    <ClCompile Include="source\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +59,7 @@
     <ClInclude Include="source\FlyCamera.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\mesh.h">
+    <ClInclude Include="source\Mesh.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
