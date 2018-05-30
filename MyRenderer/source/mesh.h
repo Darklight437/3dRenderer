@@ -4,22 +4,25 @@
 class Mesh
 {
 public:
-	Mesh() : triCount(0), vao(0), vbo(0), ibo(0) {}
+	Mesh() : triCount(0), vertArrObj(0), vertBuffObj(0), indexBuffObj(0) {}
 
 	~Mesh();
 
-	struct vertex
+	struct Vertex
 	{
 		glm::vec4 position;
 		glm::vec4 normal;
-		glm::vec2 texCoord
+		glm::vec2 texCoord;
 
 	};
 
+	void initialiseQuad();
+
+	virtual void draw();
 
 protected:
 	unsigned int triCount;
-	unsigned int vao, vbo, ibo;
+	unsigned int vertArrObj, vertBuffObj, indexBuffObj;
 
 
 };

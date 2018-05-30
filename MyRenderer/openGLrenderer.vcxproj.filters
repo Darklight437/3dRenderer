@@ -13,27 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\camera stuff">
+      <UniqueIdentifier>{a86bf903-d157-47a1-b13d-73e125023de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\main application stuff">
+      <UniqueIdentifier>{8a46ae2d-47e6-45e6-892f-bdc89b95db7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\MyWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Clock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\FlyCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Gizmos.cpp">
@@ -42,24 +30,42 @@
     <ClCompile Include="source\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Camera.cpp">
+      <Filter>Source Files\camera stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="source\FlyCamera.cpp">
+      <Filter>Source Files\camera stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyWindow.cpp">
+      <Filter>Source Files\main application stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="source\application.cpp">
+      <Filter>Source Files\main application stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Clock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\glad.c">
+      <Filter>Source Files\main application stuff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\MyWindow.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\application.h">
+    <ClInclude Include="source\Mesh.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Camera.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Clock.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\camera stuff</Filter>
     </ClInclude>
     <ClInclude Include="source\FlyCamera.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\camera stuff</Filter>
     </ClInclude>
-    <ClInclude Include="source\Mesh.h">
+    <ClInclude Include="source\MyWindow.h">
+      <Filter>Source Files\main application stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="source\application.h">
+      <Filter>Source Files\main application stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Clock.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
