@@ -6,5 +6,14 @@ class FlyCamera :
 public:
 	FlyCamera();
 	~FlyCamera();
+
+	void update(float deltaTime);
+	void setspeed(float speed);
+
+private:
+	float m_speed;
+	vec3 up;
+
+
 };
 

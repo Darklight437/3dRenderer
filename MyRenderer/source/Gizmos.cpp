@@ -1,5 +1,5 @@
-#include "Gizmos.h"
-#include "gl_core_4_4.h"
+#include "AIEutilities/Gizmos.h"
+#include "glad/glad.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <iostream>

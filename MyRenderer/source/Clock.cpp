@@ -41,6 +41,7 @@ void Clock::update()
 
 float Clock::deltaTime()
 {
+	update();
 	return m_deltaTime;
 }
 

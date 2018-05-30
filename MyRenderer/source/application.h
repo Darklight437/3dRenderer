@@ -1,6 +1,8 @@
 #pragma once
 #include "MyWindow.h"
 #include <string.h>
+#include "Clock.h"
+#include"AIEutilities\Gizmos.h"
 
 class application
 {
@@ -16,5 +18,6 @@ public:
 private:
 	MyWindow Windowhandler;
 	GLFWwindow* p_myWindow;
+	
 };
 

@@ -1,27 +1,28 @@
 #pragma once
 #include <glm\matrix.hpp>
 #include <glm\vec3.hpp>
+#include "Clock.h"
 using namespace glm;
 class Camera
 {
 public:
 	Camera();
 	~Camera();
-	void update();
-	void setPerspective();
-	void setLookAt();
-	void setPosition();
-	void setWorldTransform();
+	virtual void update(float deltaTime) = 0;
+	void setPerspective(float FOV, float aspectRatio, float nearClip, float farClip);
+	void setLookAt(vec3 from, vec3 to, vec3 up);
+	void setPosition(vec3 pos);
+	mat4 getWorldTransform();
 	mat4 getView();
 	mat4 getProjection();
 	mat4 getProjectionView();
 
 
-private:
-	mat4 worldTransform = mat4(0);
-	mat4 viewTransform = mat4(0);
-	mat4 positionTransform = mat4(0);
-	mat4 projectionViewTransform = mat4(0);
+protected:
+	mat4 m_worldTransform = mat4(0);
+	mat4 m_viewTransform = mat4(0);
+	mat4 m_projectionTransform = mat4(0);
+	mat4 m_projectionViewTransform = mat4(0);
 	void updateProjectionViewTransform();
 };
 
