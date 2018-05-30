@@ -48,6 +48,9 @@
     <ClCompile Include="source\glad.c">
       <Filter>Source Files\main application stuff</Filter>
     </ClCompile>
+    <ClCompile Include="source\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Mesh.h">
@@ -66,6 +69,9 @@
       <Filter>Source Files\main application stuff</Filter>
     </ClInclude>
     <ClInclude Include="source\Clock.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
