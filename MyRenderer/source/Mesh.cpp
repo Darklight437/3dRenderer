@@ -2,9 +2,7 @@
 #include <glad\glad.h>
 
 
-Mesh::Mesh()
-{
-}
+
 
 
 Mesh::~Mesh()

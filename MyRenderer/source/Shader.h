@@ -50,7 +50,9 @@ protected:
 };
 
 // combines shaders together into a single program for the GPU
-class ShaderProgram {
+class ShaderProgram 
+
+{
 public:
 
 	ShaderProgram() : m_program(0), m_lastError(nullptr) {

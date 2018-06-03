@@ -4,7 +4,7 @@
 class Mesh
 {
 public:
-	Mesh() : triCount(0), vertArrObj(0), vertBuffObj(0), indexBuffObj(0) {}
+	Mesh(){};
 
 	~Mesh();
 
@@ -21,8 +21,8 @@ public:
 	virtual void draw();
 
 protected:
-	unsigned int triCount;
-	unsigned int vertArrObj, vertBuffObj, indexBuffObj;
+	unsigned int triCount = 0;
+	unsigned int vertArrObj = 0, vertBuffObj = 0, indexBuffObj = 0;
 
 
 };

@@ -4,6 +4,10 @@
 
 #include <glm\glm.hpp>
 #include <glm\ext.hpp>
+#include <Windows.h>
+#include "Shader.h"
+#include <iostream>
+
 
 
 using glm::vec3;
@@ -78,5 +82,36 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	myWindow.createWindow(sizeX, sizeY, windowName);
 	p_myWindow = myWindow.getWindowptr();
 	aie::Gizmos::create(10000, 10000, 10000, 10000);
+	aie::ShaderProgram shader;
+	//load vertex shader from file
+	shader.loadShader(aie::eShaderStage::VERTEX, getExePath().c_str + "resources/shaders/simple.vert");
+
+	//load fragment shader from file
+	shader.loadShader(aie::eShaderStage::FRAGMENT, getExePath().c_str + "resources/shaders/simple.frag");
+
+	if (shader.link() == false)
+	{
+		
+	}
+
+
 	return false;
+
+}
+
+std::string application::getExePath()
+{
+	{
+		char buffer[MAX_PATH];
+		GetModuleFileName(NULL, buffer, MAX_PATH);
+		char *pos;
+
+		if (pos = strrchr(buffer, '\\'))
+		{
+			*pos = 0;
+		}
+
+		return buffer;
+	}
+
 }
