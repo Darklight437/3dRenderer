@@ -59,7 +59,9 @@ bool application::run()
 			aie::Gizmos::addLine(vec3(10, 0, -10 + i),
 				vec3(-10, 0, -10 + i),
 				i == 10 ? white : black);
-		}		aie::Gizmos::addDisk(glm::vec3(0), 20.0f, 30, glm::vec4(255, 215, 0, 1));
+		}
+		aie::Gizmos::addDisk(glm::vec3(0), 20.0f, 30, glm::vec4(255, 215, 0, 1));
+
 		aie::Gizmos::draw(projection * view);
 
 
