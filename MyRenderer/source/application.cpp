@@ -46,7 +46,7 @@ bool application::run()
 
 		
 
-		
+		//create a grid 
 		
 		vec4 white(1);
 		vec4 black(0, 0, 0, 1);
@@ -60,6 +60,7 @@ bool application::run()
 				vec3(-10, 0, -10 + i),
 				i == 10 ? white : black);
 		}
+		//create a disk
 		aie::Gizmos::addDisk(glm::vec3(0), 20.0f, 30, glm::vec4(255, 215, 0, 1));
 
 		aie::Gizmos::draw(projection * view);
@@ -74,7 +75,7 @@ bool application::run()
 
 
 	aie::Gizmos::destroy();
-	Windowhandler.destroyWindow();
+	windowhandler.destroyWindow();
 	glfwTerminate();
 	return false;
 }
@@ -84,7 +85,14 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	myWindow.createWindow(sizeX, sizeY, windowName);
 	p_myWindow = myWindow.getWindowptr();
 	aie::Gizmos::create(10000, 10000, 10000, 10000);
-	aie::ShaderProgram shader;
+
+	m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
+	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
+		windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f);
+
+
+
+	//loading shaders
 	//load vertex shader from file
 	shader.loadShader(aie::eShaderStage::VERTEX, getExePath().c_str + "resources/shaders/simple.vert");
 
@@ -93,8 +101,13 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 	if (shader.link() == false)
 	{
-		
+		std::cout << "shader error" << shader.getLastError() << std::endl;
 	}
+
+
+
+
+
 
 
 	return false;

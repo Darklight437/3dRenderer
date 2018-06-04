@@ -4,6 +4,7 @@
 #include "Clock.h"
 #include"AIEutilities\Gizmos.h"
 #include <string>
+#include "Mesh.h"
 
 
 class application
@@ -19,8 +20,16 @@ public:
 	std::string getExePath();
 
 private:
-	MyWindow Windowhandler;
+
+	glm::mat4 m_viewMatrix;
+	glm::mat4 m_projectionMatrix;
+
+
+	MyWindow windowhandler;
 	GLFWwindow* p_myWindow;
+	aie::ShaderProgram shader;
+	Mesh m_quadmesh;
+	glm::mat4 m_quadTransform;
 	
 };
 

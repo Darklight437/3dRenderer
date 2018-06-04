@@ -14,9 +14,13 @@ public:
 	bool createWindow(int sizeX, int sizeY, std::string windowName);
 	bool destroyWindow();
 	GLFWwindow* getWindowptr();
-
+	float getWindowWidth() { return m_width; }
+	float getWindowheight() { return m_height; }
 
 private:
 	GLFWwindow* mainWindow = nullptr;
+	float m_width = 0;
+	float m_height = 0;
+	 
 };
 

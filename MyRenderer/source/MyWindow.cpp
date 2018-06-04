@@ -22,7 +22,8 @@ bool MyWindow::createWindow(int sizeX, int sizeY, std::string windowName)
 		return false;
 	}
 	
-
+	m_width = sizeX;
+	m_height = sizeY;
 	mainWindow = glfwCreateWindow(sizeX, sizeY, windowName.c_str() , nullptr, nullptr);
 	
 
