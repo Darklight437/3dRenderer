@@ -31,8 +31,8 @@ bool application::run()
 	//glClearColor(0.988f, 0.414f, 0.007f, 1);
 	glEnable(GL_DEPTH_TEST); // enables the depth buffer
 
-	/*mat4 view = glm::lookAt(vec3(10, 10, 10), vec3(0), vec3(0, 1, 0));
-	mat4 projection = glm::perspective(glm::pi<float>() * 0.25f, 16 / 9.f, 0.1f, 1000.f);*/
+	mat4 view = glm::lookAt(vec3(10, 10, 10), vec3(0), vec3(0, 1, 0));
+	mat4 projection = glm::perspective(glm::pi<float>() * 0.25f, 16 / 9.f, 0.1f, 1000.f);
 
 
 	//frameloop
@@ -43,17 +43,17 @@ bool application::run()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		aie::Gizmos::clear();
 
-		m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-			windowhandler.getWindowWidth() / (float)windowhandler.getWindowWidth(),
-			0.1f, 1000.f);
+		//m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
+		//	windowhandler.getWindowWidth() / (float)windowhandler.getWindowWidth(),
+		//	0.1f, 1000.f);
 
 
-		//bind the shader
-		m_shader.bind();
+		////bind the shader
+		//m_shader.bind();
 
-		//bind the transform
-		auto pvm = m_projectionMatrix * m_viewMatrix * m_quadTransform;
-		m_shader.bindUniform("ProjectionViewModel", pvm);
+		////bind the transform
+		//auto pvm = m_projectionMatrix * m_viewMatrix * m_quadTransform;
+		//m_shader.bindUniform("ProjectionViewModel", pvm);
 
 
 		//create a grid 
@@ -98,30 +98,30 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 
 
-	m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
-	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-		windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f); 
+	//m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
+	//m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
+	//	windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f); 
 
-	m_quadmesh.initialiseQuad();
-	m_quadTransform =
-	{
-		10,0,0,0,
-		0,10,0,0,
-		0,0,10,0,
-		0,0,0,1
-	};
+	//m_quadmesh.initialiseQuad();
+	//m_quadTransform =
+	//{
+	//	10,0,0,0,
+	//	0,10,0,0,
+	//	0,0,10,0,
+	//	0,0,0,1
+	//};
 
 	//loading shaders
 	//load vertex shader from file
-	m_shader.loadShader(aie::eShaderStage::VERTEX, getExePath().c_str + "resources/shaders/simple.vert");
+	//m_shader.loadShader(aie::eShaderStage::VERTEX, getExePath().c_str + "resources/shaders/simple.vert");
 
 	//load fragment shader from file
-	m_shader.loadShader(aie::eShaderStage::FRAGMENT, getExePath().c_str + "resources/shaders/simple.frag");
+	//m_shader.loadShader(aie::eShaderStage::FRAGMENT, getExePath().c_str + "resources/shaders/simple.frag");
 
-	if (m_shader.link() == false)
-	{
-		std::cout << "shader error" << m_shader.getLastError() << std::endl;
-	}
+	//if (m_shader.link() == false)
+	//{
+	//	std::cout << "shader error" << m_shader.getLastError() << std::endl;
+	//}
 
 
 

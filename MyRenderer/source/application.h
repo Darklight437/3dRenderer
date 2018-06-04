@@ -27,9 +27,9 @@ private:
 
 	MyWindow windowhandler;
 	GLFWwindow* p_myWindow;
-	aie::ShaderProgram m_shader;
+	//aie::ShaderProgram m_shader;
 	Mesh m_quadmesh;
-	glm::mat4 m_quadTransform;
+	//glm::mat4 m_quadTransform;
 	
 };
 
