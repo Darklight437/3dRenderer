@@ -88,7 +88,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 	m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
 	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-		windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f);
+		windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f); 
 
 
 
