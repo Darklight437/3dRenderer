@@ -5,7 +5,6 @@
 #include <glm\glm.hpp>
 #include <glm\ext.hpp>
 #include <Windows.h>
-#include "Shader.h"
 #include <iostream>
 
 
@@ -43,17 +42,17 @@ bool application::run()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		aie::Gizmos::clear();
 
-		//m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-		//	windowhandler.getWindowWidth() / (float)windowhandler.getWindowWidth(),
-		//	0.1f, 1000.f);
+		m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
+			windowhandler.getWindowWidth() / (float)windowhandler.getWindowWidth(),
+			0.1f, 1000.f);
 
 
-		////bind the shader
-		//m_shader.bind();
+		//bind the shader
+		m_shader.bind();
 
-		////bind the transform
-		//auto pvm = m_projectionMatrix * m_viewMatrix * m_quadTransform;
-		//m_shader.bindUniform("ProjectionViewModel", pvm);
+		//bind the transform
+		auto pvm = m_projectionMatrix * m_viewMatrix * m_quadTransform;
+		m_shader.bindUniform("ProjectionViewModel", pvm);
 
 
 		//create a grid 
@@ -98,18 +97,22 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 
 
-	//m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
-	//m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-	//	windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f); 
+	m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
+	//error here
 
-	//m_quadmesh.initialiseQuad();
-	//m_quadTransform =
-	//{
-	//	10,0,0,0,
-	//	0,10,0,0,
-	//	0,0,10,0,
-	//	0,0,0,1
-	//};
+	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
+					windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f); 
+
+
+
+	m_quadmesh.initialiseQuad();
+	m_quadTransform =
+	{
+		10,0,0,0,
+		0,10,0,0,
+		0,0,10,0,
+		0,0,0,1
+	};
 
 	//loading shaders
 	//load vertex shader from file

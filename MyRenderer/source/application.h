@@ -3,8 +3,10 @@
 #include <string.h>
 #include "Clock.h"
 #include"AIEutilities\Gizmos.h"
+#include "Shader.h"
 #include <string>
 #include "Mesh.h"
+#include "glm\glm.hpp"
 
 
 class application
@@ -27,9 +29,9 @@ private:
 
 	MyWindow windowhandler;
 	GLFWwindow* p_myWindow;
-	//aie::ShaderProgram m_shader;
+	aie::ShaderProgram m_shader;
 	Mesh m_quadmesh;
-	//glm::mat4 m_quadTransform;
+	glm::mat4 m_quadTransform;
 	
 };
 
