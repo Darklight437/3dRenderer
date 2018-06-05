@@ -19,7 +19,7 @@ public:
 
 private:
 	GLFWwindow* mainWindow = nullptr;
-	float m_width = 0;
+	float m_width = 0.0f;
 	float m_height = 0;
 	 
 };

@@ -30,9 +30,7 @@ bool application::run()
 	//glClearColor(0.988f, 0.414f, 0.007f, 1);
 	glEnable(GL_DEPTH_TEST); // enables the depth buffer
 
-	mat4 view = glm::lookAt(vec3(10, 10, 10), vec3(0), vec3(0, 1, 0));
-	mat4 projection = glm::perspective(glm::pi<float>() * 0.25f, 16 / 9.f, 0.1f, 1000.f);
-
+	
 
 	//frameloop
 	while (glfwWindowShouldClose(p_myWindow) == false &&
@@ -43,7 +41,7 @@ bool application::run()
 		aie::Gizmos::clear();
 
 		m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-			windowhandler.getWindowWidth() / (float)windowhandler.getWindowWidth(),
+			16.0f / 9.0f,
 			0.1f, 1000.f);
 
 
@@ -91,7 +89,12 @@ bool application::run()
 
 bool application::start(int sizeX, int sizeY, std::string windowName)
 {
-	myWindow.createWindow(sizeX, sizeY, windowName);
+	if (!myWindow.createWindow(sizeX, sizeY, windowName))
+	{
+		std::cout << "window failed to create \n";
+		return false;
+	}
+	
 	p_myWindow = myWindow.getWindowptr();
 	aie::Gizmos::create(10000, 10000, 10000, 10000);
 
@@ -101,7 +104,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	//error here
 
 	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-					windowhandler.getWindowWidth() / (float)windowhandler.getWindowheight(),0.1f, 1000.f); 
+		16.0f / 9.0f,0.1f, 1000.f);
 
 
 
@@ -116,15 +119,16 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 	//loading shaders
 	//load vertex shader from file
-	//m_shader.loadShader(aie::eShaderStage::VERTEX, getExePath().c_str + "resources/shaders/simple.vert");
+	
+	m_shader.loadShader(aie::eShaderStage::VERTEX, ( getExePath() + "resources/shaders/simple.vert").c_str());
 
 	//load fragment shader from file
-	//m_shader.loadShader(aie::eShaderStage::FRAGMENT, getExePath().c_str + "resources/shaders/simple.frag");
+	m_shader.loadShader(aie::eShaderStage::FRAGMENT, ( getExePath()+ "resources/shaders/simple.frag").c_str());
 
-	//if (m_shader.link() == false)
-	//{
-	//	std::cout << "shader error" << m_shader.getLastError() << std::endl;
-	//}
+	if (m_shader.link() == false)
+	{
+		std::cout << "shader error" << m_shader.getLastError() << std::endl;
+	}
 
 
 
