@@ -23,6 +23,7 @@ void Camera::setLookAt(vec3 from, vec3 to, vec3 up)
 
 void Camera::setPosition(vec3 pos)
 {
+	
 }
 
 mat4 Camera::getWorldTransform()

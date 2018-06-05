@@ -41,7 +41,7 @@ bool application::run()
 		aie::Gizmos::clear();
 
 		//update the matrix
-		m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
+		m_projectionMatrix = glm::perspective(glm::radians(90.0f),
 			16.0f / 9.0f,
 			0.1f, 1000.f);
 
