@@ -27,7 +27,7 @@ application::~application()
 bool application::run()
 {
 	//initialising stuff
-	//glClearColor(0.988f, 0.414f, 0.007f, 1);
+	glClearColor(0.22f, 0.22f, 0.22f, 1);
 	glEnable(GL_DEPTH_TEST); // enables the depth buffer
 
 	
@@ -40,6 +40,7 @@ bool application::run()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		aie::Gizmos::clear();
 
+		//update the matrix
 		m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
 			16.0f / 9.0f,
 			0.1f, 1000.f);
@@ -67,11 +68,14 @@ bool application::run()
 				vec3(-10, 0, -10 + i),
 				i == 10 ? white : black);
 		}
-		//create a disk
-		//aie::Gizmos::addDisk(glm::vec3(0), 20.0f, 30, glm::vec4(255, 215, 0, 1));
+		
+
 
 		aie::Gizmos::draw(m_projectionMatrix * m_viewMatrix);
 
+		//draw quad
+		
+		m_quadmesh.draw();
 
 
 
@@ -101,13 +105,25 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 
 	m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
-	//error here
+	
 
 	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
 		16.0f / 9.0f,0.1f, 1000.f);
 
+	//loading shaders
+	//load vertex shader from file
+	
+	m_shader.loadShader(aie::eShaderStage::VERTEX, ( getExePath() + "/resources/shaders/simple.vert").c_str());
 
+	//load fragment shader from file
+	m_shader.loadShader(aie::eShaderStage::FRAGMENT, ( getExePath()+ "/resources/shaders/simple.frag").c_str());
 
+	if (m_shader.link() == false)
+	{
+		std::cout << "shader error" << m_shader.getLastError() << std::endl;
+	}
+
+	//create a simple quad
 	m_quadmesh.initialiseQuad();
 	m_quadTransform =
 	{
@@ -116,20 +132,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 		0,0,10,0,
 		0,0,0,1
 	};
-
-	//loading shaders
-	//load vertex shader from file
 	
-	m_shader.loadShader(aie::eShaderStage::VERTEX, ( getExePath() + "resources/shaders/simple.vert").c_str());
-
-	//load fragment shader from file
-	m_shader.loadShader(aie::eShaderStage::FRAGMENT, ( getExePath()+ "resources/shaders/simple.frag").c_str());
-
-	if (m_shader.link() == false)
-	{
-		std::cout << "shader error" << m_shader.getLastError() << std::endl;
-	}
-
 
 
 	return false;

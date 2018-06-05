@@ -16,11 +16,7 @@ int main()
 	
 
 	
-
 	
-
-	
-	//render loop
 
 	return 0;
 }

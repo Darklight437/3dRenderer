@@ -70,6 +70,4 @@ void Mesh::draw()
 		glDrawArrays(GL_TRIANGLES, 0, 3 * triCount);
 	}
 
-
-
 }
