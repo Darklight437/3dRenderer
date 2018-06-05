@@ -68,6 +68,45 @@ void Mesh::initialiseQuad()
 
 }
 
+void Mesh::initialiseMesh(unsigned int vertCount, const Vertex* verts, unsigned int indexCount = 0, unsigned int* indices = nullptr)
+{
+	assert(vertArrObj == 0);
+
+	//generate buffers
+	glGenBuffers(1, &vertBuffObj);
+	glGenVertexArrays(1, &vertArrObj);
+
+	// bind vertex array aka a mesh wrapper 
+	glBindVertexArray(vertArrObj);
+
+	// bind vertex buffer 
+	glBindBuffer(GL_ARRAY_BUFFER, vertBuffObj);
+
+	// fill vertex buffer
+	glBufferData(GL_ARRAY_BUFFER, vertCount * sizeof(Vertex), verts, GL_STATIC_DRAW);
+
+
+	// enable first element as position
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE,sizeof(Vertex), 0);
+
+
+	// bind indices if there are any
+	if (indexCount != 0)
+	{
+		glGenBuffers(1, &indexBuffObj);
+
+		// bind vertex buffer
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffObj);
+
+		// fill vertex buffer
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+
+
+	}
+
+}
+
 void Mesh::draw()
 {
 	glBindVertexArray(vertArrObj);

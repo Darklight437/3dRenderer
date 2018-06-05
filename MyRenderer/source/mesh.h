@@ -17,7 +17,7 @@ public:
 	};
 
 	void initialiseQuad();
-
+	void initialiseMesh(unsigned int vertCount, const Vertex* verts, unsigned int indexCount = 0, unsigned int* indices = nullptr);
 	virtual void draw();
 
 protected:
