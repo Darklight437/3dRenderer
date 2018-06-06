@@ -1,7 +1,6 @@
 #include "application.h"
 #include <glfw\glfw3.h>
 #include <glad\glad.h>
-
 #include <glm\glm.hpp>
 #include <glm\ext.hpp>
 #include <Windows.h>
@@ -93,15 +92,22 @@ bool application::run()
 
 bool application::start(int sizeX, int sizeY, std::string windowName)
 {
+//create window
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 	if (!myWindow.createWindow(sizeX, sizeY, windowName))
 	{
 		std::cout << "window failed to create \n";
 		return false;
 	}
 	
+	
 	p_myWindow = myWindow.getWindowptr();
 	aie::Gizmos::create(10000, 10000, 10000, 10000);
-
+//camera
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
@@ -110,9 +116,12 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
 		16.0f / 9.0f,0.1f, 1000.f);
 
-	//loading shaders
+//loading shaders
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
 	//load vertex shader from file
-	
 	m_shader.loadShader(aie::eShaderStage::VERTEX, ( getExePath() + "/resources/shaders/simple.vert").c_str());
 
 	//load fragment shader from file
@@ -123,16 +132,25 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 		std::cout << "shader error" << m_shader.getLastError() << std::endl;
 	}
 
-	//create a simple quad
-	m_quadmesh.initialiseQuad();
-	m_quadTransform =
+
+//load a mesh
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+	if (m_CRASH.load((getExePath() + "/resources/Crash Bandicoot/crash.obj").c_str()) == false)
 	{
-		10,0,0,0,
-		0,10,0,0,
-		0,0,10,0,
+		std::cout << "mesh load failed \n";
+		return false;
+	}
+
+	m_CRASHTransform =
+	{
+		1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
 		0,0,0,1
+
 	};
-	
 
 
 	return false;

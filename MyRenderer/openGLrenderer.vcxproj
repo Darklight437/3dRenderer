@@ -163,7 +163,9 @@
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\MyWindow.cpp" />
+    <ClCompile Include="source\OBJMesh.cpp" />
     <ClCompile Include="source\Shader.cpp" />
+    <ClCompile Include="source\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\application.h" />
@@ -172,7 +174,10 @@
     <ClInclude Include="source\FlyCamera.h" />
     <ClInclude Include="source\Mesh.h" />
     <ClInclude Include="source\MyWindow.h" />
+    <ClInclude Include="source\OBJMesh.h" />
     <ClInclude Include="source\Shader.h" />
+    <ClInclude Include="source\Texture.h" />
+    <ClInclude Include="source\tiny_obj_loader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

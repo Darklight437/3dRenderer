@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Clock.h"
 #include"AIEutilities\Gizmos.h"
+#include "OBJMesh.h"
 #include "Shader.h"
 #include <string>
 #include "Mesh.h"
@@ -30,6 +31,8 @@ private:
 	MyWindow windowhandler;
 	GLFWwindow* p_myWindow = nullptr;
 	aie::ShaderProgram m_shader;
+	aie::OBJMesh m_CRASH;
+	glm::mat4 m_CRASHTransform;
 	Mesh m_quadmesh;
 	glm::mat4 m_quadTransform;
 	

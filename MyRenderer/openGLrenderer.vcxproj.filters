@@ -19,6 +19,9 @@
     <Filter Include="Source Files\main application stuff">
       <UniqueIdentifier>{8a46ae2d-47e6-45e6-892f-bdc89b95db7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OBJ handler">
+      <UniqueIdentifier>{f702b480-bbcc-4c0d-b3b6-74d610d39138}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Main.cpp">
@@ -51,6 +54,12 @@
     <ClCompile Include="source\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\OBJMesh.cpp">
+      <Filter>Source Files\OBJ handler</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Mesh.h">
@@ -72,6 +81,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Shader.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\OBJMesh.h">
+      <Filter>Source Files\OBJ handler</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tiny_obj_loader.h">
+      <Filter>Source Files\OBJ handler</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Texture.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

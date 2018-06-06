@@ -23,7 +23,7 @@ public:
 
 	void initialiseQuad();
 	void initialisePrimitive(primitiveMesh type);
-	void initialiseMesh(unsigned int vertCount, const Vertex* verts, unsigned int indexCount = 0, unsigned int* indices = nullptr);
+	void initialiseMesh(unsigned int vertCount, const Vertex* verts, unsigned int indexCount, unsigned int* indices);
 	virtual void draw();
 
 protected:
