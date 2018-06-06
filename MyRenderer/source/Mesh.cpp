@@ -68,6 +68,62 @@ void Mesh::initialiseQuad()
 
 }
 
+void Mesh::initialisePrimitive(primitiveMesh type)
+{
+	unsigned int indexCount = 0;
+	assert(vertArrObj == 0);
+
+	//generate buffers
+	glGenBuffers(1, &vertBuffObj);
+	glGenVertexArrays(1, &vertArrObj);
+
+	// bind vertex array aka a mesh wrapper 
+	glBindVertexArray(vertArrObj);
+
+	// bind vertex buffer 
+	glBindBuffer(GL_ARRAY_BUFFER, vertBuffObj);
+
+	
+
+
+	switch (type)
+	{
+
+	case Mesh::BOX:
+		
+		Vertex vertices[8];
+
+		vertices[0].position = { -0.5f, 0, 0.5f, 1 };
+		vertices[1].position = { 0.5f, 0, 0.5f, 1 };
+		vertices[2].position = { -0.5f, 0, -0.5f, 1 };
+		vertices[3].position = { 0.5f, 0, -0.5f, 1 };
+		vertices[4].position = { -0.5f, 1, 0.5f, 1 };
+		vertices[5].position = { 0.5f, 1, 0.5f, 1 };
+		vertices[6].position = { -0.5f, 1, -0.5f, 1 };
+		vertices[7].position = { 0.5f, 1, -0.5f, 1 };
+		
+		triCount = 12;
+		indexCount = 0;
+		break;
+
+	case Mesh::CYLINDER:
+		break;
+	case Mesh::PYRAMID:
+		break;
+	default:
+		break;
+	}
+
+	//unbind buffers
+
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+
+
+}
+
 void Mesh::initialiseMesh(unsigned int vertCount, const Vertex* verts, unsigned int indexCount = 0, unsigned int* indices = nullptr)
 {
 	assert(vertArrObj == 0);
@@ -102,9 +158,19 @@ void Mesh::initialiseMesh(unsigned int vertCount, const Vertex* verts, unsigned 
 		// fill vertex buffer
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
-
+		triCount = indexCount / 3;
+	}
+	else
+	{
+		triCount = vertCount / 3;
 	}
 
+	//unbind buffers
+
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
 }
 
 void Mesh::draw()
