@@ -74,7 +74,7 @@ bool application::run()
 
 		//draw quad
 		
-		m_quadmesh.draw();
+		m_CRASH.draw();
 
 
 
