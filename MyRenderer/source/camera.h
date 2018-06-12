@@ -1,6 +1,5 @@
 #pragma once
-#include <glm\matrix.hpp>
-#include <glm\vec3.hpp>
+#include <glm\glm.hpp>
 #include "Clock.h"
 using namespace glm;
 class Camera
@@ -19,10 +18,11 @@ public:
 
 
 protected:
-	mat4 m_worldTransform = mat4(0);
+	mat4 m_position = mat4(0);
 	mat4 m_viewTransform = mat4(0);
 	mat4 m_projectionTransform = mat4(0);
 	mat4 m_projectionViewTransform = mat4(0);
 	void updateProjectionViewTransform();
+	void updateViewMatrix();
 };
 
