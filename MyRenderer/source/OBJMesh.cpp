@@ -8,7 +8,8 @@
 namespace aie {
 
 OBJMesh::~OBJMesh() {
-	for (auto& c : m_meshChunks) {
+	for (auto& c : m_meshChunks)
+	{
 		glDeleteVertexArrays(1, &c.vao);
 		glDeleteBuffers(1, &c.vbo);
 		glDeleteBuffers(1, &c.ibo);
@@ -17,7 +18,8 @@ OBJMesh::~OBJMesh() {
 
 bool OBJMesh::load(const char* filename, bool loadTextures /* = true */, bool flipTextureV /* = false */) {
 
-	if (m_meshChunks.empty() == false) {
+	if (m_meshChunks.empty() == false)
+	{
 		printf("Mesh already initialised, can't re-initialise!\n");
 		return false;
 	}
@@ -27,12 +29,13 @@ bool OBJMesh::load(const char* filename, bool loadTextures /* = true */, bool fl
 	std::string error = "";
 
 	std::string file = filename;
-	std::string folder = file.substr(0, file.find_last_of('/') + 1);
+	std::string folder = file.substr(0, file.find_last_of("/\\") + 1);
 
 	bool success = tinyobj::LoadObj(shapes, materials, error,
 									filename, folder.c_str());
 
-	if (success == false) {
+	if (success == false)
+	{
 		printf("%s\n", error.c_str());
 		return false;
 	}
@@ -42,7 +45,8 @@ bool OBJMesh::load(const char* filename, bool loadTextures /* = true */, bool fl
 	// copy materials
 	m_materials.resize(materials.size());
 	int index = 0;
-	for (auto& m : materials) {
+	for (auto& m : materials)
+	{
 
 		m_materials[index].ambient = glm::vec3(m.ambient[0], m.ambient[1], m.ambient[2]);
 		m_materials[index].diffuse = glm::vec3(m.diffuse[0], m.diffuse[1], m.diffuse[2]);
@@ -65,7 +69,8 @@ bool OBJMesh::load(const char* filename, bool loadTextures /* = true */, bool fl
 
 	// copy shapes
 	m_meshChunks.reserve(shapes.size());
-	for (auto& s : shapes) {
+	for (auto& s : shapes)
+	{
 
 		MeshChunk chunk;
 
@@ -147,7 +152,8 @@ bool OBJMesh::load(const char* filename, bool loadTextures /* = true */, bool fl
 	return true;
 }
 
-void OBJMesh::draw(bool usePatches /* = false */) {
+void OBJMesh::draw(bool usePatches /* = false */)
+{
 
 	int program = -1;
 	glGetIntegerv(GL_CURRENT_PROGRAM, &program);
@@ -192,10 +198,12 @@ void OBJMesh::draw(bool usePatches /* = false */) {
 	int currentMaterial = -1;
 
 	// draw the mesh chunks
-	for (auto& c : m_meshChunks) {
+	for (auto& c : m_meshChunks)
+	{
 
 		// bind material
-		if (currentMaterial != c.materialID) {
+		if (currentMaterial != c.materialID)
+		{
 			currentMaterial = c.materialID;
 			if (kaUniform >= 0)
 				glUniform3fv(kaUniform, 1, &m_materials[currentMaterial].ambient[0]);
@@ -262,7 +270,8 @@ void OBJMesh::draw(bool usePatches /* = false */) {
 	}
 }
 
-void OBJMesh::calculateTangents(std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices) {
+void OBJMesh::calculateTangents(std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices)
+{
 	unsigned int vertexCount = (unsigned int)vertices.size();
 	glm::vec4* tan1 = new glm::vec4[vertexCount * 2];
 	glm::vec4* tan2 = tan1 + vertexCount;
@@ -309,7 +318,8 @@ void OBJMesh::calculateTangents(std::vector<Vertex>& vertices, const std::vector
 		tan2[i3] += tdir;
 	}
 
-	for (unsigned int a = 0; a < vertexCount; a++) {
+	for (unsigned int a = 0; a < vertexCount; a++)
+	{
 		const glm::vec3& n = glm::vec3(vertices[a].normal);
 		const glm::vec3& t = glm::vec3(tan1[a]);
 

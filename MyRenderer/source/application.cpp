@@ -49,7 +49,7 @@ bool application::run()
 		m_shader.bind();
 
 		//bind the transform
-		auto pvm = m_projectionMatrix * m_viewMatrix * m_quadTransform;
+		auto pvm = m_projectionMatrix * m_viewMatrix * m_CRASHTransform;
 		m_shader.bindUniform("ProjectionViewModel", pvm);
 
 
@@ -137,20 +137,14 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-	if (m_CRASH.load((getExePath() + "/resources/Crash Bandicoot/crash.obj").c_str()) == false)
+	if (m_CRASH.load((getExePath() + "/resources/Crash Bandicoot/crash.obj").c_str(), true, true) == false)
 	{
 		std::cout << "mesh load failed \n";
 		return false;
 	}
 
-	m_CRASHTransform =
-	{
-		1,0,0,0,
-		0,1,0,0,
-		0,0,1,0,
-		0,0,0,1
-
-	};
+	m_CRASHTransform = glm::mat4(1);
+	//m_CRASHTransform = glm::scale(m_CRASHTransform, glm::vec3(0.01));
 
 
 	return false;
