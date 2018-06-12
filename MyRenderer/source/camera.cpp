@@ -4,6 +4,9 @@
 
 Camera::Camera()
 {
+	
+
+
 }
 
 
@@ -13,46 +16,52 @@ Camera::~Camera()
 
 void Camera::setPerspective(float FOV, float aspectRatio, float nearClip, float farClip)
 {
-	m_projectionTransform = perspective(FOV, aspectRatio, nearClip, farClip);
+	m_projectionMatrix = perspective(FOV, aspectRatio, nearClip, farClip);
 
 }
 
-void Camera::setLookAt(vec3 from, vec3 to, vec3 up)
+void Camera::setLookAt(const vec3 lookAt)
 {
-	
+	m_targetPosition = lookAt;
+	updateViewMatrix();
+	updateProjectionViewMatrix();
 }
 
 void Camera::setPosition(vec3 pos)
 {
 	m_position = vec4(pos, 1.0f);
+	updateViewMatrix();
+	updateProjectionViewMatrix();
 }
 
-mat4 Camera::getWorldTransform()
-{
-	return m_worldTransform;
-}
 
 mat4 Camera::getView()
 {
-	return m_viewTransform;
+	return m_viewMatrix;
 }
 
 mat4 Camera::getProjection()
 {
-	return m_projectionTransform;
+	return m_projectionMatrix;
 }
 
 mat4 Camera::getProjectionView()
 {
-	return m_projectionViewTransform;
+	return m_projectionViewMatrix;
 }
 
-void Camera::updateProjectionViewTransform()
+void Camera::updateProjectionViewMatrix()
 {
+	m_projectionViewMatrix = m_projectionMatrix * m_viewMatrix;
+
 }
 
 void Camera::updateViewMatrix()
 {
-	//m_viewTransform = lookAt(vec3(m_position), vec3(m_viewTransform), glm::vec3(0, 1, 0));
+	m_viewMatrix = lookAt(vec3(m_position), vec3(m_targetPosition), glm::vec3(0, 1, 0));
 		
+}
+
+void Camera::updateProjectionMatrix()
+{
 }
