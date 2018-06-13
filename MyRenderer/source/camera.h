@@ -13,9 +13,9 @@ public:
 	void setLookAt(const vec3 lookAt);
 	void setPosition(vec3 pos);
 	//mat4 getWorldTransform();
-	mat4 getView();
-	mat4 getProjection();
-	mat4 getProjectionView();
+	mat4 getView() { return m_viewMatrix; }
+	mat4 getProjection() { return m_projectionMatrix; }
+	mat4 getProjectionView() { return m_projectionViewMatrix; }
 
 
 protected:

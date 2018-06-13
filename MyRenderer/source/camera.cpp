@@ -4,7 +4,9 @@
 
 Camera::Camera()
 {
-	
+	updateProjectionMatrix();
+	updateViewMatrix();
+	updateProjectionViewMatrix();
 }
 
 
@@ -23,6 +25,7 @@ void Camera::setLookAt(const vec3 lookAt)
 	m_targetPosition = lookAt;
 	updateViewMatrix();
 	updateProjectionViewMatrix();
+
 }
 
 void Camera::setPosition(vec3 pos)

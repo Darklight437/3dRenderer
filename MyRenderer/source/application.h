@@ -34,7 +34,7 @@ private:
 	aie::ShaderProgram m_shader;
 	aie::OBJMesh m_CRASH;
 	glm::mat4 m_CRASHTransform;
-	FlyCamera Camera;
+	FlyCamera m_Camera;
 	//Mesh m_quadmesh;
 	glm::mat4 m_quadTransform;
 	

@@ -40,16 +40,16 @@ bool application::run()
 		aie::Gizmos::clear();
 
 		//update the matrix
-		m_projectionMatrix = glm::perspective(glm::radians(90.0f),
-			16.0f / 9.0f,
-			0.1f, 1000.f);
-
+		
+		
+		
+		
 
 		//bind the shader
 		m_shader.bind();
 
-		//bind the transform
-		auto pvm = m_projectionMatrix * m_viewMatrix * m_CRASHTransform;
+		//bind the transform (this handles the position of everything
+		auto pvm = m_Camera.getProjectionView() * m_CRASHTransform;
 		m_shader.bindUniform("ProjectionViewModel", pvm);
 
 
@@ -70,13 +70,13 @@ bool application::run()
 		
 
 
-		aie::Gizmos::draw(m_projectionMatrix * m_viewMatrix);
+		aie::Gizmos::draw(m_Camera.getProjectionView());
 
 		//draw quad
 		
 		m_CRASH.draw();
 
-
+		
 
 
 		glfwSwapBuffers(p_myWindow);
@@ -109,7 +109,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
+	
 	m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
 	
 
