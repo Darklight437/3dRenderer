@@ -5,8 +5,6 @@
 Camera::Camera()
 {
 	
-
-
 }
 
 
@@ -33,7 +31,6 @@ void Camera::setPosition(vec3 pos)
 	updateViewMatrix();
 	updateProjectionViewMatrix();
 }
-
 
 mat4 Camera::getView()
 {

@@ -1,6 +1,8 @@
 #include "FlyCamera.h"
 #include "Clock.h"
 #include <algorithm>
+#include <glm\gtc\matrix_transform.hpp>
+
 
 FlyCamera::FlyCamera()
 {
@@ -63,6 +65,23 @@ void FlyCamera::processMouseMovement(float xoffset, float yoffset)
 
 void FlyCamera::updateViewMatrix()
 {
+	//calculate the front vector
+	vec3 front;
+	front.x = cos(radians(m_yaw)) * cos(radians(m_pitch));
+	front.y = sin(radians(m_pitch));
+	front.z = sin(radians(m_yaw)) * cos(radians(m_pitch));
+
+	m_front = normalize(front);
+
+	//recalcualte the other direction vectors
+
+	// Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
+	m_right = normalize(cross(m_front, vec3(0, 1, 0)));
+
+	m_up = normalize(cross(m_right, m_front));
+
+	m_viewMatrix = lookAt(m_position, m_position + m_front, m_up);
+
 }
 
 

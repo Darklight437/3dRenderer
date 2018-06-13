@@ -8,6 +8,7 @@
 #include <string>
 #include "Mesh.h"
 #include "glm\glm.hpp"
+#include "FlyCamera.h"
 
 
 class application
@@ -33,6 +34,7 @@ private:
 	aie::ShaderProgram m_shader;
 	aie::OBJMesh m_CRASH;
 	glm::mat4 m_CRASHTransform;
+	FlyCamera Camera;
 	//Mesh m_quadmesh;
 	glm::mat4 m_quadTransform;
 	

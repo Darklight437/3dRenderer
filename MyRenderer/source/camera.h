@@ -9,7 +9,6 @@ class Camera
 public:
 	Camera();
 	~Camera();
-	virtual void update(float deltaTime) = 0;
 	void setPerspective(float FOV, float aspectRatio, float nearClip, float farClip);
 	void setLookAt(const vec3 lookAt);
 	void setPosition(vec3 pos);

@@ -144,8 +144,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	}
 
 	m_CRASHTransform = glm::mat4(1);
-	//m_CRASHTransform = glm::scale(m_CRASHTransform, glm::vec3(0.01));
-
+	
 
 	return false;
 
