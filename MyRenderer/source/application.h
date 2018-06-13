@@ -22,6 +22,7 @@ public:
 	bool run();
 	bool start(int sizeX, int sizeY, std::string windowName);
 	std::string getExePath();
+	
 
 private:
 

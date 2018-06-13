@@ -35,21 +35,6 @@ void Camera::setPosition(vec3 pos)
 	updateProjectionViewMatrix();
 }
 
-mat4 Camera::getView()
-{
-	return m_viewMatrix;
-}
-
-mat4 Camera::getProjection()
-{
-	return m_projectionMatrix;
-}
-
-mat4 Camera::getProjectionView()
-{
-	return m_projectionViewMatrix;
-}
-
 void Camera::updateProjectionViewMatrix()
 {
 	m_projectionViewMatrix = m_projectionMatrix * m_viewMatrix;
