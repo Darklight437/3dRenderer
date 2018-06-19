@@ -44,6 +44,12 @@ void FlyCamera::processKeyboard(Camera_Movement direction)
 	case RIGHT:
 		m_position += m_right * velocity;
 		break;
+	case UPWARD:
+		m_position += m_up * velocity;
+		break;
+	case DOWNWARD:
+		m_position -= m_up * velocity;
+		break;
 	default:
 		break;
 	}

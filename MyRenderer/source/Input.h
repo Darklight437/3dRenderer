@@ -23,7 +23,7 @@ public:
 	bool getDown(int GLFWkeycode);
 	bool getHeld(int GLFWkeycode);
 	bool getUp(int GLFWkeycode);
-
+	~Input();
 private:
 
 
@@ -37,6 +37,6 @@ private:
 
 
 	Input();
-	~Input();
+	
 };
 

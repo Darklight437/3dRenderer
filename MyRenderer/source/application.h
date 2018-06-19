@@ -28,6 +28,9 @@ public:
 
 private:
 
+	void processInput();
+
+
 	glm::mat4 m_viewMatrix;
 	glm::mat4 m_projectionMatrix;
 

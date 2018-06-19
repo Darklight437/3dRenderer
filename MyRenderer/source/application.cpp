@@ -5,7 +5,7 @@
 #include <glm\ext.hpp>
 #include <Windows.h>
 #include <iostream>
-
+#include "input.h"
 
 
 using glm::vec3;
@@ -175,6 +175,53 @@ void application::update()
 	Clock::getInstance().update();
 
 	
+}
+
+void application::processInput()
+{
+#define INP_INST Input::getInstance()
+
+	INP_INST.update();
+
+	//exit on esc
+	if (INP_INST.getDown(GLFW_KEY_ESCAPE))
+	{
+		glfwSetWindowShouldClose(p_myWindow, true);
+	}
+
+	//camera input settings
+	//wsad controls
+	{
+
+
+		if (INP_INST.getHeld(GLFW_KEY_W) || INP_INST.getHeld(GLFW_KEY_UP))
+		{
+			m_Camera.processKeyboard(FORWARD);
+		}
+		if (INP_INST.getHeld(GLFW_KEY_S) || INP_INST.getHeld(GLFW_KEY_DOWN))
+		{
+			m_Camera.processKeyboard(BACKWARD);
+		}
+		if (INP_INST.getHeld(GLFW_KEY_A) || INP_INST.getHeld(GLFW_KEY_LEFT))
+		{
+			m_Camera.processKeyboard(LEFT);
+		}
+		if (INP_INST.getHeld(GLFW_KEY_D) || INP_INST.getHeld(GLFW_KEY_RIGHT))
+		{
+			m_Camera.processKeyboard(RIGHT);
+		}
+		if (INP_INST.getHeld(GLFW_KEY_SPACE) || INP_INST.getHeld(GLFW_KEY_PAGE_UP))
+		{
+			m_Camera.processKeyboard(UPWARD);
+		}
+		if (INP_INST.getHeld(GLFW_KEY_RIGHT_CONTROL) || INP_INST.getHeld(GLFW_KEY_PAGE_DOWN))
+		{
+			m_Camera.processKeyboard(DOWNWARD);
+		}
+	}
+
+	
+
 }
 
 
