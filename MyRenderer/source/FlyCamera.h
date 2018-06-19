@@ -3,7 +3,7 @@
 #include "glfw\glfw3.h"
 
 
-enum class Camera_Movement
+enum Camera_Movement
 {
 	FORWARD,
 	BACKWARD,
