@@ -39,7 +39,7 @@ bool application::run()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		aie::Gizmos::clear();
 
-		//update the matrix
+		update();
 		
 		
 		
@@ -174,7 +174,7 @@ void application::update()
 	//time update
 	Clock::getInstance().update();
 
-	
+	processInput();
 }
 
 void application::processInput()
