@@ -169,4 +169,12 @@ std::string application::getExePath()
 
 }
 
+void application::update()
+{
+	//time update
+	Clock::getInstance().update();
+
+	
+}
+
 

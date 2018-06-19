@@ -22,7 +22,9 @@ public:
 	bool run();
 	bool start(int sizeX, int sizeY, std::string windowName);
 	std::string getExePath();
-	
+	//updates time and handles repeating tasks such as input
+	void update();
+
 
 private:
 
