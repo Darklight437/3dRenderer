@@ -109,14 +109,11 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
+	m_Camera.setPosition(vec3(2, 4, 2));
 	
 	
-	/*m_viewMatrix = glm::lookAt(vec3(10), vec3(0), vec3(0, 1, 0));
 	
-
-	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
-		16.0f / 9.0f,0.1f, 1000.f);*/
+	
 
 //loading shaders
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,6 +144,11 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 	m_CRASHTransform = glm::mat4(1);
 	
+	//pass window pointer to input
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+	Input::getInstance().setWindowPointer(p_myWindow);
 
 	return false;
 
@@ -175,6 +177,7 @@ void application::update()
 	Clock::getInstance().update();
 
 	processInput();
+	
 }
 
 void application::processInput()
@@ -214,11 +217,14 @@ void application::processInput()
 		{
 			m_Camera.processKeyboard(UPWARD);
 		}
-		if (INP_INST.getHeld(GLFW_KEY_RIGHT_CONTROL) || INP_INST.getHeld(GLFW_KEY_PAGE_DOWN))
+		if (INP_INST.getHeld(GLFW_KEY_LEFT_CONTROL) || INP_INST.getHeld(GLFW_KEY_PAGE_DOWN))
 		{
 			m_Camera.processKeyboard(DOWNWARD);
 		}
 	}
+
+	//mouse controls
+
 
 	
 

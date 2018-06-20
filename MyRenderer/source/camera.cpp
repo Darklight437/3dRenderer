@@ -49,4 +49,5 @@ void Camera::updateViewMatrix()
 
 void Camera::updateProjectionMatrix()
 {
+	m_projectionMatrix = glm::perspective(m_fieldOfView, 16.0f / 9.0f, m_nearPlane, m_farPlane);
 }

@@ -37,7 +37,7 @@ protected:
 	unsigned int m_screenWidth = 1280;
 	unsigned int m_screenHeight = 720;
 	float m_nearPlane = 0.1f;
-	float m_farPlane = 1000.0f;
+	float m_farPlane = 10000.0f;
 	float m_fieldOfView = 90.0f;
 
 	

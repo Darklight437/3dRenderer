@@ -9,13 +9,17 @@ FlyCamera::FlyCamera()
 	updateViewMatrix();
 	updateProjectionMatrix();
 	updateProjectionViewMatrix();
-
-
 }
 
 
 FlyCamera::~FlyCamera()
 {
+}
+
+void FlyCamera::setSpeed(float normalSpeed, float fastSpeed)
+{
+	m_moveSpeed = normalSpeed;
+	m_fastSpeed = fastSpeed;
 }
 
 void FlyCamera::setPosition(const glm::vec3 position)

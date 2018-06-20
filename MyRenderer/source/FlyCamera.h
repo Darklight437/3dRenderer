@@ -24,7 +24,7 @@ public:
 
 	bool m_running = false;
 
-
+	void setSpeed(float normalSpeed, float fastSpeed);
 	void setPosition(const glm::vec3 position);
 
 	void processKeyboard(Camera_Movement direction);
@@ -34,7 +34,7 @@ public:
 	
 
 private:
-	float m_speed;
+
 	vec3 up;
 
 	void updateViewMatrix();
@@ -48,8 +48,8 @@ private:
 	float m_pitch = -45.0f;
 	float m_yaw = -45.0f;
 
-	float m_moveSpeed = 10.0f;
-	float m_fastSpeed = 50.0f;
+	float m_moveSpeed = 500.0f;
+	float m_fastSpeed = 800.0f;
 
 	float m_lookSensitivity = 0.1f;
 };
