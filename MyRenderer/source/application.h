@@ -44,5 +44,6 @@ private:
 	//Mesh m_quadmesh;
 	glm::mat4 m_quadTransform;
 	
+	
 };
 

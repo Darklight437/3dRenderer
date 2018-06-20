@@ -184,6 +184,7 @@ void application::processInput()
 {
 #define INP_INST Input::getInstance()
 
+	
 	INP_INST.update();
 
 	//exit on esc
@@ -225,7 +226,8 @@ void application::processInput()
 
 	//mouse controls
 
-
+	//save old mouse pos
+	
 	
 
 }
