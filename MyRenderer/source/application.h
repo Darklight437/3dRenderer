@@ -25,7 +25,8 @@ public:
 	//updates time and handles repeating tasks such as input
 	void update();
 
-
+	glm::vec2 m_LastMousePos = glm::vec2(0);
+	FlyCamera m_Camera;
 private:
 
 	void processInput();
@@ -39,10 +40,14 @@ private:
 	GLFWwindow* p_myWindow = nullptr;
 	aie::ShaderProgram m_shader;
 	aie::OBJMesh m_CRASH;
+	aie::OBJMesh m_box;
+
 	glm::mat4 m_CRASHTransform;
-	FlyCamera m_Camera;
+	glm::mat4 m_boxTransform;
 	//Mesh m_quadmesh;
 	glm::mat4 m_quadTransform;
+	
+	
 	
 	
 };

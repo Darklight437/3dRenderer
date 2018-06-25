@@ -71,6 +71,8 @@ void FlyCamera::processMouseMovement(float xoffset, float yoffset)
 	m_yaw += xoffset;
 
 	m_pitch = std::min(89.0f, m_pitch);
+	updateViewMatrix();
+	updateProjectionViewMatrix();
 }
 
 void FlyCamera::updateViewMatrix()

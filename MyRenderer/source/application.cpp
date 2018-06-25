@@ -13,7 +13,9 @@ using glm::vec4;
 using glm::mat4;
 
 MyWindow myWindow;
-
+//callback declaration
+void mouseCallback(GLFWwindow* window, double xpos, double ypos);
+void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 application::application()
 {
 }
@@ -72,10 +74,10 @@ bool application::run()
 
 		aie::Gizmos::draw(m_Camera.getProjectionView());
 
-		//draw quad
+		//draw meshes
 		
 		m_CRASH.draw();
-
+		m_box.draw();
 		
 
 
@@ -143,15 +145,42 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	}
 
 	m_CRASHTransform = glm::mat4(1);
-	
-	//pass window pointer to input
+
+	//new mesh
+	if (m_box.load((getExePath() + "/resources/TNTCrate/TNT CRATE.obj").c_str(), true, true) == false)
+	{
+		std::cout << "mesh load failed \n";
+		return false;
+	}
+	m_boxTransform = mat4(1);
+
+//pass window pointer to input
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 	Input::getInstance().setWindowPointer(p_myWindow);
 
-	return false;
+	
 
+//createw callbacs
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+	glfwSetCursorPosCallback(p_myWindow, mouseCallback);
+	glfwSetFramebufferSizeCallback(p_myWindow, framebufferSizeCallback);
+
+
+//lock cursor to screen
+	glfwSetInputMode(p_myWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+//store application pointer in the window to get at later
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+	glfwSetWindowUserPointer(p_myWindow, this);
+
+
+	return false;
 }
 
 std::string application::getExePath()
@@ -180,10 +209,14 @@ void application::update()
 	
 }
 
+
+
 void application::processInput()
 {
 #define INP_INST Input::getInstance()
 
+	m_Camera.setSpeed(500.0f, 1000.0f);
+	m_Camera.m_running = false;
 	
 	INP_INST.update();
 
@@ -196,7 +229,10 @@ void application::processInput()
 	//camera input settings
 	//wsad controls
 	{
-
+		if (INP_INST.getHeld(GLFW_KEY_LEFT_SHIFT))
+		{
+			m_Camera.m_running = true;
+		}
 
 		if (INP_INST.getHeld(GLFW_KEY_W) || INP_INST.getHeld(GLFW_KEY_UP))
 		{
@@ -224,12 +260,36 @@ void application::processInput()
 		}
 	}
 
-	//mouse controls
 
-	//save old mouse pos
-	
 	
 
 }
 
+//runs when the mouse moves
+void mouseCallback(GLFWwindow* window, double XPos, double YPos)
+{	//get the application pointer out of the window
+	application* app = static_cast<application*>(glfwGetWindowUserPointer(window));
+
+	if (app->m_LastMousePos == glm::vec2(-1, -1))
+	{
+		app->m_LastMousePos = vec2(XPos, YPos);
+	}
+
+	
+	float xoffset = (float)XPos - app->m_LastMousePos.x;
+	//y position is writen from bottom to top
+
+	float yoffset = app->m_LastMousePos.y - (float)YPos;
+
+	app->m_LastMousePos = vec2(XPos, YPos);
+
+	app->m_Camera.processMouseMovement(xoffset, yoffset);
+}
+
+// whenever the window is resized this callback is run
+void framebufferSizeCallback(GLFWwindow* window, int width, int height)
+{
+	// resize viewport to match the new size
+	glViewport(0, 0, width, height);
+}
 
