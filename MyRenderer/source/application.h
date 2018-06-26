@@ -45,8 +45,8 @@ private:
 	glm::mat4 m_CRASHTransform;
 	glm::mat4 m_boxTransform;
 	//Mesh m_quadmesh;
-	glm::mat4 m_quadTransform;
-	
+	//glm::mat4 m_quadTransform;
+	glm::mat4 m_worldTransform;
 	
 	
 	

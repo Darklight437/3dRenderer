@@ -25,6 +25,99 @@ application::~application()
 {
 }
 
+bool application::start(int sizeX, int sizeY, std::string windowName)
+{
+	//create window
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	if (!myWindow.createWindow(sizeX, sizeY, windowName))
+	{
+		std::cout << "window failed to create \n";
+		return false;
+	}
+
+
+	p_myWindow = myWindow.getWindowptr();
+	aie::Gizmos::create(10000, 10000, 10000, 10000);
+	//camera
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	m_Camera.setPosition(vec3(2, 4, 2));
+
+	
+
+
+
+	//loading shaders
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	//load vertex shader from file
+	m_shader.loadShader(aie::eShaderStage::VERTEX, (getExePath() + "/resources/shaders/simple.vert").c_str());
+
+	//load fragment shader from file
+	m_shader.loadShader(aie::eShaderStage::FRAGMENT, (getExePath() + "/resources/shaders/simple.frag").c_str());
+
+	if (m_shader.link() == false)
+	{
+		std::cout << "shader error" << m_shader.getLastError() << std::endl;
+	}
+
+
+	//load a mesh
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	if (m_CRASH.load((getExePath() + "/resources/Crash Bandicoot/crash.obj").c_str(), true, true) == false)
+	{
+		std::cout << "mesh load failed \n";
+		return false;
+	}
+
+	m_CRASHTransform = glm::mat4(1);
+
+	//new mesh
+	if (m_box.load((getExePath() + "\\resources\\TNTCrate\\TNT CRATE.obj").c_str(), true, true) == false)
+	{
+		std::cout << "mesh load failed \n";
+		return false;
+	}
+	m_boxTransform = mat4(1);
+	m_boxTransform = scale(m_boxTransform, vec3(0.02f));
+
+	//pass window pointer to input
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	Input::getInstance().setWindowPointer(p_myWindow);
+
+
+
+	//createw callbacs
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	glfwSetCursorPosCallback(p_myWindow, mouseCallback);
+	glfwSetFramebufferSizeCallback(p_myWindow, framebufferSizeCallback);
+
+
+	//lock cursor to screen
+	glfwSetInputMode(p_myWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+	//store application pointer in the window to get at later
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	glfwSetWindowUserPointer(p_myWindow, this);
+
+
+	return false;
+}
+
+
 bool application::run()
 {
 	//initialising stuff
@@ -50,10 +143,6 @@ bool application::run()
 		//bind the shader
 		m_shader.bind();
 
-		//bind the transform (this handles the position of everything
-		auto pvm = m_Camera.getProjectionView() * m_CRASHTransform;
-		m_shader.bindUniform("ProjectionViewModel", pvm);
-
 
 		//create a grid 
 		
@@ -74,10 +163,18 @@ bool application::run()
 
 		aie::Gizmos::draw(m_Camera.getProjectionView());
 
+
 		//draw meshes
-		
+		//do this for each mesh
+		mat4 pvm = m_Camera.getProjectionView() * m_CRASHTransform;
+		m_shader.bindUniform("ProjectionViewModel", pvm);
 		m_CRASH.draw();
+		
+		
+		pvm = m_Camera.getProjectionView() * m_boxTransform;
+		m_shader.bindUniform("ProjectionViewModel", pvm);
 		m_box.draw();
+		
 		
 
 
@@ -92,96 +189,7 @@ bool application::run()
 	return false;
 }
 
-bool application::start(int sizeX, int sizeY, std::string windowName)
-{
-//create window
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
 
-	if (!myWindow.createWindow(sizeX, sizeY, windowName))
-	{
-		std::cout << "window failed to create \n";
-		return false;
-	}
-	
-	
-	p_myWindow = myWindow.getWindowptr();
-	aie::Gizmos::create(10000, 10000, 10000, 10000);
-//camera
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-	m_Camera.setPosition(vec3(2, 4, 2));
-	
-	
-	
-	
-
-//loading shaders
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-	//load vertex shader from file
-	m_shader.loadShader(aie::eShaderStage::VERTEX, ( getExePath() + "/resources/shaders/simple.vert").c_str());
-
-	//load fragment shader from file
-	m_shader.loadShader(aie::eShaderStage::FRAGMENT, ( getExePath()+ "/resources/shaders/simple.frag").c_str());
-
-	if (m_shader.link() == false)
-	{
-		std::cout << "shader error" << m_shader.getLastError() << std::endl;
-	}
-
-
-//load a mesh
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-	if (m_CRASH.load((getExePath() + "/resources/Crash Bandicoot/crash.obj").c_str(), true, true) == false)
-	{
-		std::cout << "mesh load failed \n";
-		return false;
-	}
-
-	m_CRASHTransform = glm::mat4(1);
-
-	//new mesh
-	if (m_box.load((getExePath() + "\\resources\\TNTCrate\\TNT CRATE.obj").c_str(), true, true) == false)
-	{
-		std::cout << "mesh load failed \n";
-		return false;
-	}
-	m_boxTransform = mat4(1);
-
-//pass window pointer to input
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-	Input::getInstance().setWindowPointer(p_myWindow);
-
-	
-
-//createw callbacs
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-	glfwSetCursorPosCallback(p_myWindow, mouseCallback);
-	glfwSetFramebufferSizeCallback(p_myWindow, framebufferSizeCallback);
-
-
-//lock cursor to screen
-	glfwSetInputMode(p_myWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-//store application pointer in the window to get at later
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-	glfwSetWindowUserPointer(p_myWindow, this);
-
-
-	return false;
-}
 
 std::string application::getExePath()
 {

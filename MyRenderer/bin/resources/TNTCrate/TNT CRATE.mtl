@@ -2,10 +2,12 @@
 
 newmtl default
 Kd 1 1 1
+map_Kd red.jpg
 
 newmtl Aluminum - Brushed 90° - Texture
 Ka 1 1 1
 Kd 1 1 1
+map_Kd red.jpg
 illum 7
 
 newmtl Mat

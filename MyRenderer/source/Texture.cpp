@@ -93,7 +93,7 @@ namespace aie {
 			m_filename = filename;
 			return true;
 		}
-		std::cout << "texture load fail \n" << filename << std::endl;
+		//std::cout << "texture load fail \n" << filename << std::endl;
 		return false;
 	}
 
