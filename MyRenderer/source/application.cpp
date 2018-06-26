@@ -147,7 +147,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	m_CRASHTransform = glm::mat4(1);
 
 	//new mesh
-	if (m_box.load((getExePath() + "/resources/TNTCrate/TNT CRATE.obj").c_str(), true, true) == false)
+	if (m_box.load((getExePath() + "\\resources\\TNTCrate\\TNT CRATE.obj").c_str(), true, true) == false)
 	{
 		std::cout << "mesh load failed \n";
 		return false;

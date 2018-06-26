@@ -1,5 +1,6 @@
 #include "glad\glad.h"
 #include "Texture.h"
+#include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb\stb_image.h>
@@ -56,7 +57,8 @@ namespace aie {
 		int x = 0, y = 0, comp = 0;
 		m_loadedPixels = stbi_load(filename, &x, &y, &comp, STBI_default);
 
-		if (m_loadedPixels != nullptr) {
+		if (m_loadedPixels != nullptr) 
+		{
 			glGenTextures(1, &m_glHandle);
 			glBindTexture(GL_TEXTURE_2D, m_glHandle);
 			switch (comp) {
@@ -91,6 +93,7 @@ namespace aie {
 			m_filename = filename;
 			return true;
 		}
+		std::cout << "texture load fail \n" << filename << std::endl;
 		return false;
 	}
 

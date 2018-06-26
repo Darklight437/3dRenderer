@@ -11,7 +11,7 @@ illum 7
 newmtl Mat
 Ka 1 1 1
 Kd 0.80000001192093 0.80000001192093 0.80000001192093
-map_Kd /Users/TheCHVM/Desktop/red.jpg
+map_Kd red.jpg
 Ks 1 1 1
 Ns 50
 illum 7
@@ -19,7 +19,7 @@ illum 7
 newmtl Mat_1
 Ka 1 1 1
 Kd 0.80000001192093 0.80000001192093 0.80000001192093
-map_Kd /Users/TheCHVM/Desktop/red up.jpg
+map_Kd red up.jpg
 Ks 1 1 1
 Ns 50
 illum 7
