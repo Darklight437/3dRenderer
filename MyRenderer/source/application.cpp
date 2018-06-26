@@ -80,13 +80,13 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	m_CRASHTransform = glm::mat4(1);
 
 	//new mesh
-	if (m_box.load((getExePath() + "\\resources\\TNTCrate\\TNT CRATE.obj").c_str(), true, true) == false)
+	if (m_knackles.load((getExePath() + "\\resources\\Knuckles the Echidna\\Knuckles the Echidna.obj").c_str(), true, true) == false)
 	{
 		std::cout << "mesh load failed \n";
 		return false;
 	}
-	m_boxTransform = mat4(1);
-	m_boxTransform = scale(m_boxTransform, vec3(0.02f));
+	m_knacklesTransform = mat4(1);
+	
 
 	//pass window pointer to input
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -171,9 +171,9 @@ bool application::run()
 		m_CRASH.draw();
 		
 		
-		pvm = m_Camera.getProjectionView() * m_boxTransform;
+		pvm = m_Camera.getProjectionView() * m_knacklesTransform;
 		m_shader.bindUniform("ProjectionViewModel", pvm);
-		m_box.draw();
+		m_knackles.draw();
 		
 		
 

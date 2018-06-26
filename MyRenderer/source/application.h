@@ -40,10 +40,10 @@ private:
 	GLFWwindow* p_myWindow = nullptr;
 	aie::ShaderProgram m_shader;
 	aie::OBJMesh m_CRASH;
-	aie::OBJMesh m_box;
+	aie::OBJMesh m_knackles;
 
 	glm::mat4 m_CRASHTransform;
-	glm::mat4 m_boxTransform;
+	glm::mat4 m_knacklesTransform;
 	//Mesh m_quadmesh;
 	//glm::mat4 m_quadTransform;
 	glm::mat4 m_worldTransform;
