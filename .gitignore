@@ -17,10 +17,11 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+[Bb]uild/
 x64/
 x86/
 bld/
-[Bb]uild/
+
 
 [Oo]bj/
 [Ll]og/
@@ -57,11 +58,11 @@ artifacts/
 *_i.h
 *.ilk
 *.meta
-*.obj
 *.pch
 *.pdb
 *.pgc
 *.pgd
+*.tlog
 *.rsp
 *.sbr
 *.tlb
