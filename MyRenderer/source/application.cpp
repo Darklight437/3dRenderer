@@ -78,6 +78,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	}
 
 	m_CRASHTransform = glm::mat4(1);
+	m_CRASHTransform = glm::translate(m_CRASHTransform, glm::vec3(10, 0, 0));
 
 	//new mesh
 	if (m_daxter.load((getExePath() + "\\resources\\Daxter\\Daxter.obj").c_str(), true, true) == false)
@@ -86,6 +87,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 		return false;
 	}
 	m_daxterTransform = mat4(1);
+	m_daxterTransform = glm::scale(m_daxterTransform, glm::vec3(0.2, 0.2, 0.2));
 	
 
 	//pass window pointer to input
@@ -168,7 +170,7 @@ bool application::run()
 		//do this for each mesh
 		mat4 pvm = m_Camera.getProjectionView() * m_CRASHTransform;
 		m_shader.bindUniform("ProjectionViewModel", pvm);
-		//m_CRASH.draw();
+		m_CRASH.draw();
 		
 		
 		pvm = m_Camera.getProjectionView() * m_daxterTransform;
