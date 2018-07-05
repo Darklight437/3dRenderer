@@ -161,6 +161,7 @@
     <ClCompile Include="source\Gizmos.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\Input.cpp" />
+    <ClCompile Include="source\Light.cpp" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\MyWindow.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="source\Clock.h" />
     <ClInclude Include="source\FlyCamera.h" />
     <ClInclude Include="source\Input.h" />
+    <ClInclude Include="source\Light.h" />
     <ClInclude Include="source\Mesh.h" />
     <ClInclude Include="source\MyWindow.h" />
     <ClInclude Include="source\OBJMesh.h" />

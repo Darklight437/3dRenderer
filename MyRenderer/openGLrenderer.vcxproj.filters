@@ -63,6 +63,9 @@
     <ClCompile Include="source\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Mesh.h">
@@ -96,6 +99,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Input.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Light.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

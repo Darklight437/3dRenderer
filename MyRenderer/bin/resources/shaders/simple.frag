@@ -1,4 +1,4 @@
-// a simple flat colour shader
+// ambiently lit shader
 #version 410
 
 in vec4 normal;
@@ -11,11 +11,14 @@ uniform sampler2D Kd;
 
 void main()
  {
+	float ambientStrength = 0.1;
+	vec4 ambient = ambientStrength * vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	vec4 tex = texture(Kd, texCoord);
 	if(tex.a < 0.1)
 	{
 		discard;
 	}
+	
  
-	FragColour = texture(Kd, texCoord);
+	FragColour = texture(Kd, texCoord) * ambient;
  }
