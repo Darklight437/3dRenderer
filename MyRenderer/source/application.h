@@ -9,6 +9,7 @@
 #include "Mesh.h"
 #include "glm\glm.hpp"
 #include "FlyCamera.h"
+#include "Light.h"
 
 
 class application
@@ -47,7 +48,7 @@ private:
 	//Mesh m_quadmesh;
 	//glm::mat4 m_quadTransform;
 	glm::mat4 m_worldTransform;
-	
+	Light m_staticlight;
 	
 	
 };

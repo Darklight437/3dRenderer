@@ -89,6 +89,12 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	m_daxterTransform = mat4(1);
 	m_daxterTransform = glm::scale(m_daxterTransform, glm::vec3(0.2, 0.2, 0.2));
 	
+	//create lights
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	m_staticlight = Light(mat4(1), vec4(1), 1.0f);
+	m_staticlight.setTransform(glm::translate(m_staticlight.getTransform(), vec3(0, 10, 0)));
 
 	//pass window pointer to input
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,20 +167,30 @@ bool application::run()
 				i == 10 ? white : black);
 		}
 		
-
+		aie::Gizmos::addSphere(vec3(m_staticlight.getTransform()[3]), 1.0f, 10, 10, white);
 
 		aie::Gizmos::draw(m_Camera.getProjectionView());
 
 
 		//draw meshes
 		//do this for each mesh
+		//update uniforms 
+		//static light information
+		m_shader.bindUniform("lightPos", m_staticlight.getTransform());
+		m_shader.bindUniform("lightColour", m_staticlight.getColour());
+
+		//per model positions
 		mat4 pvm = m_Camera.getProjectionView() * m_CRASHTransform;
+
 		m_shader.bindUniform("ProjectionViewModel", pvm);
+		m_shader.bindUniform("model", m_CRASHTransform);
+		//draw meshes
 		m_CRASH.draw();
 		
 		
 		pvm = m_Camera.getProjectionView() * m_daxterTransform;
 		m_shader.bindUniform("ProjectionViewModel", pvm);
+		m_shader.bindUniform("model", m_daxterTransform);
 		m_daxter.draw();
 		
 		
