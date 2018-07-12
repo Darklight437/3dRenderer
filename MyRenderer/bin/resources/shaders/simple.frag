@@ -4,12 +4,12 @@
 in vec4 normal;
 in vec2 texCoord;
 in vec3 fragpos;
+in vec3 lightposition;
 out vec4 FragColour;
 
 
 uniform sampler2D Kd;
-uniform vec3 lightPos;
-uniform vec4 lightColour;
+
 
 vec3 lightDir = normalize(lightPos - fragpos);
 void main()

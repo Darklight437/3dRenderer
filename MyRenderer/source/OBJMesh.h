@@ -21,6 +21,7 @@ public:
 
 							// normal-mapping data
 		glm::vec4 tangent;	// added to attrib location 3
+
 	};
 
 	// a basic material
