@@ -7,21 +7,21 @@ layout( location = 2 ) in vec2 TexCoord;
 
 out vec4 normal;
 out vec2 texCoord;
-out vec3 fragpos;
-out vec3 lightposition;
+out vec4 lightDir;
 
-uniform vec3 lightPos;
-uniform vec4 lightColour;
-uniform mat4 ProjectionViewModel;
+uniform vec4 lightPos;
 uniform mat4 model;
+uniform mat4 ProjectionViewModel;
+
 
 
 
 void main()
  {
-	lightposition = lightPos;
-	normal = Normal;
+	
+	normal = normalize(Normal);
 	texCoord = TexCoord;
-	vec3 fragpos = vec3( model * Position);
+	vec4 fragpos = vec4( model * Position);
+	vec4 lightDir = normalize(lightPos - fragpos);
 	gl_Position = ProjectionViewModel * Position;
  }

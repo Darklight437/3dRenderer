@@ -3,19 +3,25 @@
 
 in vec4 normal;
 in vec2 texCoord;
-in vec3 fragpos;
-in vec3 lightposition;
+in vec4 lightDir;
 out vec4 FragColour;
 
 
 uniform sampler2D Kd;
+uniform vec4 lightColour;
 
 
-vec3 lightDir = normalize(lightPos - fragpos);
 void main()
  {
-	float ambientStrength = 0.1;
+	float ambientStrength = 0.2;
+	
+	//ambient light
 	vec4 ambient = ambientStrength * lightColour;
+	
+	//diffuse light
+	float lambert = max(dot(normal, -lightDir), 0.0);
+	vec4 diffuse = lambert * lightColour;
+	
 	vec4 tex = texture(Kd, texCoord);
 	if(tex.a < 0.1)
 	{
@@ -23,5 +29,5 @@ void main()
 	}
 	
  
-	FragColour = texture(Kd, texCoord) * ambient;
+	FragColour = texture(Kd, texCoord) * (ambient + diffuse);
  }

@@ -176,9 +176,12 @@ bool application::run()
 		//do this for each mesh
 		//update uniforms 
 		//static light information
-		m_shader.bindUniform("lightPos", m_staticlight.getTransform());
-		m_shader.bindUniform("lightColour", m_staticlight.getColour());
+		{
+			vec4 lightpos = m_staticlight.getTransform()[3];
+			m_shader.bindUniform("lightPos", lightpos);
+			m_shader.bindUniform("lightColour", m_staticlight.getColour());
 
+		}
 		//per model positions
 		mat4 pvm = m_Camera.getProjectionView() * m_CRASHTransform;
 
