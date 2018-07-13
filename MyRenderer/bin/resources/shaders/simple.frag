@@ -13,13 +13,15 @@ uniform vec4 lightColour;
 
 void main()
  {
+	
+	
 	float ambientStrength = 0.2;
 	
 	//ambient light
 	vec4 ambient = ambientStrength * lightColour;
 	
 	//diffuse light
-	float lambert = max(dot(normal, -lightDir), 0.0);
+	float lambert = max(dot(normal, lightDir), 0.0);
 	vec4 diffuse = lambert * lightColour;
 	
 	vec4 tex = texture(Kd, texCoord);

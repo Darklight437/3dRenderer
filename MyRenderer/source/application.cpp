@@ -95,6 +95,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 	m_staticlight = Light(mat4(1), vec4(1), 1.0f);
 	m_staticlight.setTransform(glm::translate(m_staticlight.getTransform(), vec3(0, 10, 0)));
+	
 
 	//pass window pointer to input
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,8 +149,7 @@ bool application::run()
 		
 		
 
-		//bind the shader
-		m_shader.bind();
+
 
 
 		//create a grid 
@@ -167,21 +167,22 @@ bool application::run()
 				i == 10 ? white : black);
 		}
 		
-		aie::Gizmos::addSphere(vec3(m_staticlight.getTransform()[3]), 1.0f, 10, 10, white);
+		aie::Gizmos::addSphere(vec3(m_staticlight.getTransform()[3]), 1.0f, 10, 10, m_staticlight.getColour());
 
 		aie::Gizmos::draw(m_Camera.getProjectionView());
 
 
-		//draw meshes
-		//do this for each mesh
-		//update uniforms 
-		//static light information
-		{
-			vec4 lightpos = m_staticlight.getTransform()[3];
-			m_shader.bindUniform("lightPos", lightpos);
+
+
+		//bind the shader
+		m_shader.bind();
+
+		//bind light uniforms
+
+			m_shader.bindUniform("lightPos", m_staticlight.getTransform()[3]);
 			m_shader.bindUniform("lightColour", m_staticlight.getColour());
 
-		}
+		
 		//per model positions
 		mat4 pvm = m_Camera.getProjectionView() * m_CRASHTransform;
 
