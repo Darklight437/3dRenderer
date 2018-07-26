@@ -186,16 +186,21 @@ bool application::run()
 		//per model positions
 		mat4 pvm = m_Camera.getProjectionView() * m_CRASHTransform;
 
+		//
+		//m_shader.bindUniform("ProjectionViewModel", pvm);
+		//m_shader.bindUniform("model", m_daxterTransform);
+		//m_daxter.draw();
+
+
+
+		pvm = m_Camera.getProjectionView() * m_CRASHTransform;
+
 		m_shader.bindUniform("ProjectionViewModel", pvm);
 		m_shader.bindUniform("model", m_CRASHTransform);
-		//draw meshes
 		m_CRASH.draw();
 		
 		
-		pvm = m_Camera.getProjectionView() * m_daxterTransform;
-		m_shader.bindUniform("ProjectionViewModel", pvm);
-		m_shader.bindUniform("model", m_daxterTransform);
-		m_daxter.draw();
+		
 		
 		
 
