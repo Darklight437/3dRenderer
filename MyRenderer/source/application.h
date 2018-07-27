@@ -43,7 +43,7 @@ private:
 	aie::OBJMesh m_CRASH;
 	aie::OBJMesh m_daxter;
 
-	glm::mat4 m_CRASHTransform;
+	glm::mat4 m_BCTransform;
 	glm::mat4 m_daxterTransform;
 	//Mesh m_quadmesh;
 	//glm::mat4 m_quadTransform;
