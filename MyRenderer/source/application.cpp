@@ -71,7 +71,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 
-	if (m_CRASH.load((getExePath() + "/resources/hgn_battlecruiser/Body/LOD0.obj").c_str(), true, true) == false)
+	if (m_CRASH.load((getExePath() + "/resources/Crash Bandicoot/crash.obj").c_str(), true, true) == false)
 	{
 		std::cout << "mesh load failed \n";
 		return false;
@@ -79,7 +79,7 @@ bool application::start(int sizeX, int sizeY, std::string windowName)
 
 	m_BCTransform = glm::mat4(1);
 	m_BCTransform = glm::translate(m_BCTransform, glm::vec3(10, 0, 0));
-	m_BCTransform = glm::scale(m_BCTransform, glm::vec3(0.03, 0.03, 0.03));
+	//m_BCTransform = glm::scale(m_BCTransform, glm::vec3(0.03, 0.03, 0.03));
 
 	//new mesh
 	if (m_daxter.load((getExePath() + "/resources/Daxter/Daxter.obj").c_str(), true, true) == false)
@@ -180,8 +180,8 @@ bool application::run()
 
 		//bind light uniforms
 
-			m_shader.bindUniform("lightPos", m_staticlight.getTransform()[3]);
-			m_shader.bindUniform("lightColour", m_staticlight.getColour());
+		m_shader.bindUniform("lightPos", m_staticlight.getTransform()[3]);
+		m_shader.bindUniform("lightColour", m_staticlight.getColour());
 
 		//camera position uniform
 
@@ -193,16 +193,18 @@ bool application::run()
 		
 		m_shader.bindUniform("ProjectionViewModel", pvm);
 		m_shader.bindUniform("model", m_daxterTransform);
+		mat3 normalMatrix = inverseTranspose(m_daxterTransform);
+		m_shader.bindUniform("NormalMatrix", normalMatrix);
 		m_daxter.draw();
 
 
 
-		//pvm = m_Camera.getProjectionView() * m_BCTransform;
+		pvm = m_Camera.getProjectionView() * m_BCTransform;
 
-		//m_shader.bindUniform("ProjectionViewModel", pvm);
-		//m_shader.bindUniform("model", m_BCTransform);
-		//m_CRASH.draw();
-		//
+		m_shader.bindUniform("ProjectionViewModel", pvm);
+		m_shader.bindUniform("model", m_BCTransform);
+		m_CRASH.draw();
+		
 		
 		
 		

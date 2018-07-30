@@ -5,34 +5,21 @@ layout( location = 0 ) in vec4 Position;
 layout( location = 1 ) in vec4 Normal;
 layout( location = 2 ) in vec2 TexCoord;
 
-
-//broken one
-uniform vec4 lightPos;
 uniform mat4 model;
-uniform vec4 viewPos;
 
 //used to find the modelspace position of the vertex
 uniform mat4 ProjectionViewModel;
-
+uniform mat3 NormalMatrix;
 
 out vec4 normal;
 out vec2 texCoord;
-out vec4 lightDir;
-out float spec;
+out vec4 fragpos;
 
 void main()
  {
-
-	normal = normalize(Normal);
+	normal = normalize(vec4(NormalMatrix * Normal.xyz, 0.0));
 	texCoord = TexCoord;
-	vec4 fragpos = vec4( model * Position);
-	lightDir = normalize(lightPos - fragpos);
-	
-	//reflection calculations
-	vec4 viewdir = normalize(viewPos - fragpos);
-	vec4 reflectDir = reflect(-lightDir, normal);
-	
-	spec = pow(max(dot(viewdir, reflectDir), 0.0), 64);
+	fragpos = vec4( model * Position);
 	
 	gl_Position = ProjectionViewModel * Position;
  }
